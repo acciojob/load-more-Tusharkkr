@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import './../styles/App.css';
 
 const items = [
@@ -36,9 +36,28 @@ const items = [
 ];
 
 const App = () => {
+
+  let [increment,setIncrement] =useState(-1)
+
+  function handleClick(){
+    console.log(items.length, increment)
+    if(items.length-1 !== increment)
+    setIncrement(+increment + +10)
+  }
+
+  let arr = []
+  for(let i=0; i<=increment; i++){
+    arr.push(items[i])
+  }
+
   return (
     <div>
-        {/* Do not remove the main div */}
+        <ul>
+        {arr.map(value=>(
+          <li>{value}</li>
+        ))}
+        </ul>
+        <button onClick={handleClick}>Load more</button>
     </div>
   )
 }
