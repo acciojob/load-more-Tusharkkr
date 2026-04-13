@@ -37,31 +37,54 @@ const items = [
 
 const App = () => {
 
-  let [increment, setIncrement] = useState(-1)
+  const [count, setCount] = useState(0);
 
-  function handleClick() {
-    console.log('strt', items.length, increment)
-    if (items.length - 1 !== increment) {
-      setIncrement(+increment + +10)
+  const handleClick = () => {
+    if (count < items.length) {
+      setCount(count + 10);
     }
-    console.log('end', items.length, increment)
-  }
-
-  let arr = []
-  for (let i = 0; i <= increment; i++) {
-    arr.push(items[i])
-  }
+  };
 
   return (
     <div>
       <ul>
-        {arr.map(value => (
-          <li>{value}</li>
+        {items.slice(0, count).map((value, index) => (
+          <li key={index}>{value}</li>
         ))}
       </ul>
+
       <button onClick={handleClick}>Load more</button>
     </div>
   )
 }
 
 export default App
+
+
+
+
+
+//   let [increment, setIncrement] = useState(-1)
+
+//   function handleClick() {
+//     if (items.length - 1 !== increment) {
+//       setIncrement(+increment + +10)
+//     }
+//   }
+
+//   let arr = []
+//   for (let i = 0; i <= increment; i++) {
+//     arr.push(items[i])
+//   }
+
+//   return (
+//     <div>
+//       <ul>
+//         {arr.map(value => (
+//           <li>{value}</li>
+//         ))}
+//       </ul>
+//       <button onClick={handleClick}>Load more</button>
+//     </div>
+//   )
+// }
