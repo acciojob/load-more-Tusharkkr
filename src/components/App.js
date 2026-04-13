@@ -14,16 +14,20 @@ const App = () => {
   const [count, setCount] = useState(0);
 
   const handleClick = () => {
-    const newCount = count + 10;
-    setCount(Math.min(newCount, items.length));
+    if (count < items.length) {
+      setCount(count + 10);
+    }
   };
 
   return (
     <div>
       <ul>
-        {items.slice(0, count).map((value, index) => (
-          <li key={index}>{value}</li>
-        ))}
+        {
+          count > 0 &&
+          items.slice(0, count).map((value, index) => (
+            <li key={index}>{value}</li>
+          ))
+        }
       </ul>
 
       <button onClick={handleClick}>Load more</button>
